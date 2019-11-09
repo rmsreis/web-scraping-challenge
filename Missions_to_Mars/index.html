@@ -4,78 +4,91 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mission to Mars</title>
+  <title>Missions to Mars</title>
+
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head> 
-<body class="text-white" style="background-color: black;">
-    <div class="container">
-        <!-- Jumbotron -->
-        <!--IMAGES: https://images5.alphacoders.com/508/508358.jpg / https://vfxblog.com/wp-content/uploads/2016/12/marsattacks1b.jpg / https://i.gifer.com/embedded/download/NRfS.gif -->
-        <div class="jumbotron text-center" style="background-image: url(http://gortoncenter.org/wp-content/uploads/2018/05/The-Martian.jpg); height: 400px; background-position: center; background-size: cover;">
-            <h1 class="display-3"><b>Mission to Mars</b></h1>
-            <p><a class="btn btn-danger btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head> 
+    <body class="text-white" style="background-color: rgb(0, 0, 0);">
+        <div class="container">
+        
+        <!-- Jumbotron -->        
+        <div class="jumbotron text-center" 
+             style="background-image: url(https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/pia23378-16.jpg?itok=C0U6sF-I);
+                 height: 600px; background-position: center; background-size: cover;">
+            
+            <h1 class="display-4"><b>Missions to Mars</b></h1>
+            <p><a class="btn btn-danger btn-lg active" href="/scrape"
+                role="button" aria-pressed="true">
+                Scrape New Mars Data</a></p>
         </div>
-        <!-- NASA Mars News -->
+        
+        <!-- Mars News from NASA webpage -->
         <div class="container">
             <div class="row" id="mars-news">
                 <div class="media">
                     <div class="media-body">
-                        <h4>Latest Mars News</h4>
-                        <h5 style="color: #DC143C">{{mars.news_title}}</h5>
-                        <p style="color: #8B0000">{{mars.news_paragraph}}</p>
+                        <h4> Latest Mars News</h4>
+                        <h5 style="color: rgb(0, 0, 0)">{{mars.title_news}}</h5>
+                        <p style="color: rgb(6, 216, 253)">{{mars.paragraph_news}}</p>
                     </div>
                 </div>
             </div>
         </div>   
+
         <!-- JPL Mars Space Images - Featured Image -->
         <div class="container">
             <div class="row" id="mars-featured-image">
                 <div class="col-lg-8 col-md-8 col-sm-12">
-                <h4>Featured Mars Image</h4>
+                <h3>Featured Image from Mars</h3>
+
                     <!-- If Images are False/None/Non-Existent, Then Default to Error Message -->
-                    <img src="{{mars.featured_image | default('static/images/error.png', true) }}" class="img-responsive" style="max-width:100%; max-height: auto;" alt="Mars Featured Image"/>
+                    <img src="{{mars.featured_image}}" 
+                         class="img-responsive" 
+                         style="max-width:100%; max-height: auto;"
+                         alt="Mars Image"/>
                 </div>
-                <!-- Mars Weather -->
+
+                <!-- Weather on Mars -->
                 <div class="col-lg-4 col-md-4 col-sm-12" id="mars-weather">
                     <div class="card" style="max-width: 18rem;">
                         <div class="card-body text-white bg-danger">
-                            <h4 class="card-title">Current Weather on Mars</h4>
+                            <h3 class="card-title"> Weather on Mars</h3>
                             <p class="card-text">{{mars.weather}}</p>
                         </div>
                     </div>
-                    <!-- Mars Facts -->
+
+                <!-- Facts -->
                     <br>
                     <div class="row" id="mars-facts">
                         <div class="col-md-12">
                             <h4>Mars Facts</h4>
-                            {{mars.facts | safe}}
+                            {{mars.facts}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Mars Hemispheres -->
-        <h4 style="padding-top: 50px; margin-top: 100px; text-align: center;">Mars Hemispheres</h4>
+        <h4 style="padding-top: 80px; margin-top: 100px; text-align: center;">Mars Hemispheres</h4>
         <div class="card-deck">
             <hr>
             <div class="col-md-12">
                 <div class="row" id="mars-hemispheres">
-                    {% for hemisphere in mars.hemispheres %}
                     <div class="col-md-6">
                         <div class="card text-white bg-danger" style="margin: 30px;">
-                            <!-- If Images are False/None/Non-Existent, Then Default to Error Message -->
-                            <img class="card-img-top" src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="..."/>
-                            <div class="card-body">
-                                <p class="card-text">{{hemisphere.title}}</p>
-                            </div>
+
+                            <img class="card-img-top" src="{{hemisphere.img_url | default('static/images/error.png', true)}}" 
+                                 alt="..."/>
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Bootstrap JavaScript -->
     <!-- jQuery, Popper.js & Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
