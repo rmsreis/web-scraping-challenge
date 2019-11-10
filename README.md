@@ -17,7 +17,7 @@ Prerequisites (Python libraries)
 The initial data scraping can be run either in a Jupyter Notebook or in Python.
 
 Built using:
-: Python / Jupyter Notebook
+Python / Jupyter Notebook
 Pandas
 BeautifulSoup
 Flask
@@ -26,5 +26,4 @@ MongoDB
 HTML 5.0
 Bootstrap
 
-Author
-Roberto dos Reis
+Author: Roberto dos Reis
